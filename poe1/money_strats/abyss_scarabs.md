@@ -4,7 +4,7 @@ What to expect:
 Atlas tree to use:
 ![atlas_tree](https://github.com/user-attachments/assets/37356265-6757-450f-b301-3b3d9ded1045)
 
-Scarabs to use:
+Scarabs to use:<br />
 ![scarabs](https://github.com/user-attachments/assets/565574fd-fae6-4b1d-aed7-dce207ed0363) + abyss on map device (the map should be 150-250% increased scarabs). Use maven scarab chisels.
 
 Skill node required otherwise not worth:
