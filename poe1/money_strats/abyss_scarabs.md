@@ -10,7 +10,7 @@ Scarabs to use:<br />
 ![scarabs](https://github.com/user-attachments/assets/565574fd-fae6-4b1d-aed7-dce207ed0363) <br />+ abyss on map device 
 
 Map roll:<br />
-![Screenshot 2025-07-05 201011](https://github.com/user-attachments/assets/719c4a91-e248-4375-aa0a-a7ea1f148c06) The map should be 150-250% increased scarabs. Use maven scarab chisels.
+![Screenshot 2025-07-05 201011](https://github.com/user-attachments/assets/719c4a91-e248-4375-aa0a-a7ea1f148c06) <br />The map should be 150-250% increased scarabs. Use maven scarab chisels.
 
 Skill node required otherwise not worth:
 ![skill_node](https://github.com/user-attachments/assets/421d4bf3-cc43-43f7-a6f9-38848407e8de) + desecrate with faster casting (spam this to open horde chests)
