@@ -280,6 +280,7 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab(event, 'builds')">Builds</button>
             <button class="tab-btn" onclick="switchTab(event, 'money')">Money Strategies</button>
+            <button class="tab-btn" onclick="switchTab(event, 'meta')">Meta & Guides</button>
         </div>
 
         <!-- BUILDS TAB -->
@@ -294,10 +295,15 @@
 
         <!-- MONEY STRATEGIES TAB -->
         <div id="money" class="content">
-            <div style="grid-column: 1 / -1;">
-                <div id="moneyContainer"></div>
-            </div>
+            <div id="moneyContainer"></div>
         </div>
+
+        <!-- META & GUIDES TAB -->
+        <div id="meta" class="content">
+            <div id="metaContainer"></div>
+        </div>
+
+        <footer>
 
         <footer>
             Check out my other resources at <a href="https://quantumrepository.com" target="_blank">Quantum Repository</a>
@@ -333,6 +339,7 @@
 
             displayBuilds(allBuilds);
             displayMoney();
+            displayMeta();
         }
 
         function displayBuilds(builds) {
@@ -392,6 +399,31 @@
                     <p>Farming strategy with details, screenshots, and atlas tree information</p>
                     <div class="card-buttons">
                         <a href="${GITHUB_WEB}/money_strats/${strat.file}" target="_blank" class="btn btn-primary">View on GitHub</a>
+                    </div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function displayMeta() {
+            const container = document.getElementById('metaContainer');
+            const guides = [
+                {
+                    title: '3.27 Starter Hype & Stocking Guide',
+                    description: 'YouTube consensus on popular league starters + what items to pre-stock for the first 48-72h. Avoid crowded meta and profit from hype.',
+                    file: 'meta/3.27-starter-hype.md',
+                    tags: ['Market', 'Starters', '3.27']
+                }
+            ];
+
+            let html = '';
+            guides.forEach(guide => {
+                html += `<div class="card">
+                    <h3>${guide.title}</h3>
+                    ${guide.tags.map(tag => `<div class="card-tag">${tag}</div>`).join('')}
+                    <p>${guide.description}</p>
+                    <div class="card-buttons">
+                        <a href="${GITHUB_WEB}/${guide.file}" target="_blank" class="btn btn-primary">View on GitHub</a>
                     </div>
                 </div>`;
             });
