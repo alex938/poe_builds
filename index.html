@@ -364,7 +364,7 @@
             let html = '';
 
             sortedVersions.forEach(version => {
-                html += `<div class="version-header">Patch ${version}</div>`;
+                html += `<div style="grid-column: 1 / -1; margin-top: 20px;"><div class="version-header">Patch ${version}</div></div>`;
                 // Sort builds within version alphabetically
                 grouped[version].sort((a, b) => a.name.localeCompare(b.name));
                 grouped[version].forEach(build => {
@@ -407,11 +407,11 @@
             const container = document.getElementById('metaContainer');
             const html = `
                 <div style="grid-column: 1 / -1; color: var(--gold);">
-                    <h2 style="margin-bottom: 20px; font-size: 1.8em;">3.27 Starter Hype & Stocking Guide</h2>
+                    <h2 style="margin-bottom: 20px; font-size: 1.8em;">3.27 Hype - What to Avoid</h2>
                     <p style="color: var(--text-muted); margin-bottom: 30px; line-height: 1.8; font-size: 1.05em;">Avoid crowded starters and pre-stock items those players will buy in the first 48–72h.</p>
                 </div>
 
-                <div class="card" style="grid-column: 1 / -1;">
+                <div class="card" style="grid-column: 1 / -1; margin-top: 10px;">
                     <h3 style="color: var(--accent-light); margin-bottom: 15px;">📊 Most Popular Starters (by hype)</h3>
                     <table style="width: 100%; border-collapse: collapse; color: var(--text);">
                         <tr style="border-bottom: 1px solid var(--accent);">
