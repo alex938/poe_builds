@@ -407,26 +407,117 @@
 
         function displayMeta() {
             const container = document.getElementById('metaContainer');
-            const guides = [
-                {
-                    title: '3.27 Starter Hype & Stocking Guide',
-                    description: 'YouTube consensus on popular league starters + what items to pre-stock for the first 48-72h. Avoid crowded meta and profit from hype.',
-                    file: 'meta/3.27-starter-hype.md',
-                    tags: ['Market', 'Starters', '3.27']
-                }
-            ];
+            const html = `
+                <div style="grid-column: 1 / -1;">
+                    <h2 style="color: var(--gold); margin-bottom: 20px; font-size: 1.8em;">3.27 Starter Hype & Stocking Guide</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.8;">Avoid crowded starters and pre-stock items those players will buy in the first 48–72h.</p>
+                </div>
 
-            let html = '';
-            guides.forEach(guide => {
-                html += `<div class="card">
-                    <h3>${guide.title}</h3>
-                    ${guide.tags.map(tag => `<div class="card-tag">${tag}</div>`).join('')}
-                    <p>${guide.description}</p>
-                    <div class="card-buttons">
-                        <a href="${GITHUB_WEB}/${guide.file}" target="_blank" class="btn btn-primary">View on GitHub</a>
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">📊 Most Popular Starters (by hype)</h3>
+                    <table style="width: 100%; border-collapse: collapse; color: var(--text);">
+                        <tr style="border-bottom: 1px solid var(--accent);">
+                            <th style="text-align: left; padding: 10px; color: var(--gold);">Rank</th>
+                            <th style="text-align: left; padding: 10px; color: var(--gold);">Build</th>
+                            <th style="text-align: center; padding: 10px; color: var(--gold);">Hype %</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(233,69,96,0.2);">
+                            <td style="padding: 10px;">1</td>
+                            <td style="padding: 10px;">Explosive Arrow Ballista (Champion)</td>
+                            <td style="text-align: center; padding: 10px;"><span style="background: var(--accent); color: var(--primary); padding: 4px 8px; border-radius: 4px;">14%</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(233,69,96,0.2);">
+                            <td style="padding: 10px;">2</td>
+                            <td style="padding: 10px;">Wander (KB/PS) Deadeye</td>
+                            <td style="text-align: center; padding: 10px;"><span style="background: var(--accent); color: var(--primary); padding: 4px 8px; border-radius: 4px;">13%</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(233,69,96,0.2);">
+                            <td style="padding: 10px;">3</td>
+                            <td style="padding: 10px;">Poisonous Concoction (Pathfinder)</td>
+                            <td style="text-align: center; padding: 10px;"><span style="background: var(--accent); color: var(--primary); padding: 4px 8px; border-radius: 4px;">11%</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(233,69,96,0.2);">
+                            <td style="padding: 10px;">4</td>
+                            <td style="padding: 10px;">Righteous Fire (Jugg/Chieftain)</td>
+                            <td style="text-align: center; padding: 10px;"><span style="background: var(--accent); color: var(--primary); padding: 4px 8px; border-radius: 4px;">10%</span></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(233,69,96,0.2);">
+                            <td style="padding: 10px;">5</td>
+                            <td style="padding: 10px;">Toxic Rain (PF/Ballista/Champ)</td>
+                            <td style="text-align: center; padding: 10px;"><span style="background: var(--accent); color: var(--primary); padding: 4px 8px; border-radius: 4px;">9%</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">💰 Quick Stock List</h3>
+                    <div style="columns: 2; column-gap: 30px;">
+                        <div>
+                            <h4 style="color: var(--gold); margin-top: 15px; margin-bottom: 10px;">Uniques</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="padding: 5px 0;">✓ Quill Rain</li>
+                                <li style="padding: 5px 0;">✓ Soul Mantle</li>
+                                <li style="padding: 5px 0;">✓ Kikazaru ×2</li>
+                                <li style="padding: 5px 0;">✓ Self-Flagellation</li>
+                                <li style="padding: 5px 0;">✓ Haemophilia</li>
+                                <li style="padding: 5px 0;">✓ Ryslatha's Coil</li>
+                                <li style="padding: 5px 0;">✓ Tremor Rod</li>
+                                <li style="padding: 5px 0;">✓ Rise of the Phoenix</li>
+                                <li style="padding: 5px 0;">✓ Saffell's Frame</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--gold); margin-top: 15px; margin-bottom: 10px;">Gems to Bulk</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="padding: 5px 0;">✓ Ballista Totem Support</li>
+                                <li style="padding: 5px 0;">✓ GMP</li>
+                                <li style="padding: 5px 0;">✓ Explosive Arrow</li>
+                                <li style="padding: 5px 0;">✓ Toxic Rain</li>
+                                <li style="padding: 5px 0;">✓ Kinetic Blast</li>
+                                <li style="padding: 5px 0;">✓ Power Siphon</li>
+                                <li style="padding: 5px 0;">✓ Righteous Fire</li>
+                                <li style="padding: 5px 0;">✓ Summon Holy Relic</li>
+                                <li style="padding: 5px 0;">✓ Storm Burst</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>`;
-            });
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">🔫 EA Ballista Champion</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Quill Rain, Dyadian Dawn/Blackgleam, Kaom's Heart (later)</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> +1/+2 bow bases (Thicket/Grove), attack-speed quivers</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Explosive Arrow, Ballista Totem, GMP, Elemental Damage with Attacks</p>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">⚡ Wander (KB/PS) Deadeye</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Piscator's Vigil, Prismweave</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> High-ilvl Imbued/Opal/Prophecy wands, Evasion/ES shields</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Kinetic Blast, Power Siphon, GMP, Added Lightning</p>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">☠️ Poisonous Concoction Pathfinder</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Amethyst flasks, Despair-on-Hit rings (optional)</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> Evasion 6-links, chaos-DoT helmets</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Poisonous Concoction, Plague Bearer, Wither Totems, Void Manipulation</p>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">🔥 Righteous Fire Jugg/Chieftain</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Rise of the Phoenix, Saffell's Frame, Legacy of Fury</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> Elder helmets (Burning Damage/Conc), armour/ES 6-link bodies</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Righteous Fire, Purity of Fire, Malevolence, Arrogance</p>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">🎯 Toxic Rain Variants</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Quill Rain (Ballista), Carcass Jack (optional)</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> +1/+2 bows, chaos-DoT quivers, totem bows</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Toxic Rain, Vicious Projectiles, Mirage Archer, Ballista Totem</p>
+                </div>
+            `;
             container.innerHTML = html;
         }
 
