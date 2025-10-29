@@ -350,11 +350,18 @@
                 grouped[version].push(build);
             });
 
-            const sortedVersions = Object.keys(grouped).sort((a, b) => parseFloat(b) - parseFloat(a));
+            // Sort versions descending (3.27, 3.26, 3.25, etc)
+            const sortedVersions = Object.keys(grouped).sort((a, b) => {
+                if (a === 'Other') return 1;
+                if (b === 'Other') return -1;
+                return parseFloat(b) - parseFloat(a);
+            });
             let html = '';
 
             sortedVersions.forEach(version => {
                 html += `<div class="version-header">Patch ${version}</div>`;
+                // Sort builds within version alphabetically
+                grouped[version].sort((a, b) => a.name.localeCompare(b.name));
                 grouped[version].forEach(build => {
                     html += `<div class="card">
                         <h3>${build.name}</h3>
