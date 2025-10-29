@@ -84,8 +84,12 @@
 
         .content.active {
             display: grid !important;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
+        }
+
+        #meta.content.active {
+            grid-template-columns: 1fr !important;
         }
 
         .card {
@@ -514,6 +518,41 @@
                     <p><strong style="color: var(--gold);">Uniques:</strong> Quill Rain (Ballista), Carcass Jack (optional)</p>
                     <p><strong style="color: var(--gold);">Bases:</strong> +1/+2 bows, chaos-DoT quivers, totem bows</p>
                     <p><strong style="color: var(--gold);">Gems:</strong> Toxic Rain, Vicious Projectiles, Mirage Archer, Ballista Totem</p>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">🗡️ Bleed Lacerate / Retaliate (Gladiator)</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Haemophilia, Ryslatha's Coil</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> Axes/swords with Bleed/DoT, Vulnerability-on-Hit rings</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Lacerate, Brutality, Pride, Chance to Bleed</p>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">💀 Exsanguinate + Reap (Miner/Trapper)</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Tremor Rod, Sunblast/Cheap Construction (niche)</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> Early 6-link caster bodies</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Exsanguinate, Reap, Swift Assembly, Efficacy, Skitterbots</p>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">⚡ Storm Burst Totems (Hierophant)</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Soul Mantle, 2× Kikazaru, Self-Flagellation jewel</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> Cast-speed wands/shields, totem shields</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Storm Burst, Spell Totem, Multiple Totems</p>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">❄️ Cold Blade Vortex (Elementalist)</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Carcass Jack/Inpulsa (optional), +1 Cold/Spell weapons</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> Elder/influenced helms with BV supports, Dex-fix jewelry</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Vaal BV, Hypothermia, Bonechill, Cold Pen</p>
+                </div>
+
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 style="color: var(--accent-light); margin-bottom: 15px;">❄️ Vaal Ice Nova of Frostbolts (Occultist)</h3>
+                    <p><strong style="color: var(--gold);">Uniques:</strong> Call of the Brotherhood (later), crit/cold multi gear</p>
+                    <p><strong style="color: var(--gold);">Bases:</strong> +1 Cold/Spell wands/daggers, Elder AoE/Conc helms</p>
+                    <p><strong style="color: var(--gold);">Gems:</strong> Vaal Ice Nova, Frostbolt, Spell Echo, Hypothermia</p>
                 </div>
             `;
             container.innerHTML = html;
