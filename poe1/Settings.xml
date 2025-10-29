@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathOfBuilding>
+	<Mode mode="LIST">
+		<Arg boolean="false"/>
+		<Arg string=""/>
+	</Mode>
+	<Accounts/>
+	<SharedItems/>
+	<Misc betaTest="true" connectionProtocol="0" colorNegative="^xDD0022" thousandsSeparator="," showThousandsSeparators="true" colorPositive="^x33FF77" buildSortMode="NAME" invertSliderScrollDirection="false" showTitlebarName="true" POESESSID="" disableDevAutoSave="false" colorHighlight="^xFF0000" slotOnlyTooltips="true" defaultCharLevel="1" showWarnings="true" decimalSeparator="." defaultItemAffixQuality="0.5" nodePowerTheme="RED/BLUE" defaultGemQuality="0" buildPath="C:\Users\alexa\OneDrive\pob_builds/"/>
+</PathOfBuilding>
