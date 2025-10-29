@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POE Builds & Money Strategies</title>
+    <title>Alex's Builds & Money Strats</title>
     <style>
         * {
             margin: 0;
@@ -278,8 +278,8 @@
         </header>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('builds')">Builds</button>
-            <button class="tab-btn" onclick="switchTab('money')">Money Strategies</button>
+            <button class="tab-btn active" onclick="switchTab(event, 'builds')">Builds</button>
+            <button class="tab-btn" onclick="switchTab(event, 'money')">Money Strategies</button>
         </div>
 
         <!-- BUILDS TAB -->
@@ -305,57 +305,26 @@
     </div>
 
     <script>
-        const GITHUB_REPO = 'alex938/poe_builds';
-        const GITHUB_RAW = 'https://raw.githubusercontent.com/alex938/poe_builds/main/poe1';
         const GITHUB_WEB = 'https://github.com/alex938/poe_builds/tree/main/poe1';
+        const GITHUB_RAW = 'https://raw.githubusercontent.com/alex938/poe_builds/main/poe1';
 
         let allBuilds = [];
 
-        async function fetchData() {
-            try {
-                // Fetch hardcoded data
-                await loadBuildData();
-                await loadMoneyData();
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('buildsContainer').innerHTML = 
-                    `<div class="empty-state"><p>Error loading builds: ${error.message}</p></div>`;
-                document.getElementById('moneyContainer').innerHTML = 
-                    `<div class="empty-state"><p>Error loading strategies: ${error.message}</p></div>`;
-            }
-        }
+        const buildNames = [
+            '3.25 Boneshatter', '3.25 CYCLONE', '3.25 ELE HIT KOBA', '3.25 LA with starter',
+            '3.25 LACERATE', '3.25 POISON CONC OF BOUNCING',
+            '3.25 POISON GOLEM NECRO STARTER TO MAPS', '3.25 POISON GOLEM NECROMANCER END GAME',
+            '3.26 BONESHATTER', '3.26 BONESHATTER 2', '3.26 BONESHATTER 3 GOOD',
+            '3.26 DEATH OATH MF', '3.26 DIVINE SMITE - IS A GOD!', '3.26 ELE HIT OF SPECTRUM',
+            '3.26 GIGA POISON CONC OF BOUNCING',
+            '3.27 EXANG-REAP MINER', '3.27 LACERATE MID GAME', '3.27 LACERATE STARTER',
+            '3.27 LACERATE UBER', '3.27 PCONC BOUNCING',
+            'COBRA LASH 3.26 STARTER CURRENCY', 'ELE HIT 3.25 FULL', 'ELE HIT OF SPEC WARDEN',
+            'LACERATE 3.26 LEVEVLLING', 'POE 3.26 EXPLO TRAP', 'POE 3.26 EXPLO TRAP TANKY'
+        ];
 
-        async function loadBuildData() {
-            const buildFileNames = [
-                '3.25 Boneshatter',
-                '3.25 CYCLONE',
-                '3.25 ELE HIT KOBA',
-                '3.25 LA with starter',
-                '3.25 LACERATE',
-                '3.25 POISON CONC OF BOUNCING',
-                '3.25 POISON GOLEM NECRO STARTER TO MAPS',
-                '3.25 POISON GOLEM NECROMANCER END GAME',
-                '3.26 BONESHATTER',
-                '3.26 BONESHATTER 2',
-                '3.26 BONESHATTER 3 GOOD',
-                '3.26 DEATH OATH MF',
-                '3.26 DIVINE SMITE - IS A GOD!',
-                '3.26 ELE HIT OF SPECTRUM',
-                '3.26 GIGA POISON CONC OF BOUNCING',
-                '3.27 EXANG-REAP MINER',
-                '3.27 LACERATE MID GAME',
-                '3.27 LACERATE STARTER',
-                '3.27 LACERATE UBER',
-                '3.27 PCONC BOUNCING',
-                'COBRA LASH 3.26 STARTER CURRENCY',
-                'ELE HIT 3.25 FULL',
-                'ELE HIT OF SPEC WARDEN',
-                'LACERATE 3.26 LEVEVLLING',
-                'POE 3.26 EXPLO TRAP',
-                'POE 3.26 EXPLO TRAP TANKY'
-            ];
-
-            allBuilds = buildFileNames.map(name => ({
+        function init() {
+            allBuilds = buildNames.map(name => ({
                 name: name,
                 file: name + '.xml',
                 url: `${GITHUB_WEB}/Builds/${encodeURIComponent(name + '.xml')}`,
@@ -363,32 +332,16 @@
             })).sort((a, b) => b.name.localeCompare(a.name));
 
             displayBuilds(allBuilds);
-        }
-
-        async function loadMoneyData() {
-            const strategies = [
-                {
-                    name: 'ABYSS SCARABS',
-                    url: `${GITHUB_WEB}/money_strats/abyss_scarabs.md`
-                },
-                {
-                    name: 'KINGSMARCH',
-                    url: `${GITHUB_WEB}/money_strats/kingsmarch.md`
-                }
-            ];
-
-            displayMoney(strategies);
+            displayMoney();
         }
 
         function displayBuilds(builds) {
             const container = document.getElementById('buildsContainer');
-            
             if (builds.length === 0) {
-                container.innerHTML = '<div class="empty-state"><p>No builds found matching your search.</p></div>';
+                container.innerHTML = '<div class="empty-state"><p>No builds found.</p></div>';
                 return;
             }
 
-            // Group by patch version
             const grouped = {};
             builds.forEach(build => {
                 const match = build.name.match(/3\.\d+/);
@@ -397,44 +350,45 @@
                 grouped[version].push(build);
             });
 
-            // Sort versions descending
             const sortedVersions = Object.keys(grouped).sort((a, b) => parseFloat(b) - parseFloat(a));
+            let html = '';
 
-            container.innerHTML = sortedVersions.map(version => `
-                <div style="grid-column: 1 / -1;">
-                    <div class="version-header">Patch ${version}</div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;">
-                        ${grouped[version].map(build => `
-                            <div class="card">
-                                <h3>${build.name}</h3>
-                                <div class="card-tag">${version}</div>
-                                <p>Click to view or download this build</p>
-                                <div class="card-buttons">
-                                    <a href="${build.url}" target="_blank" class="btn btn-primary" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">View on GitHub</a>
-                                    <a href="${build.downloadUrl}" download class="btn btn-secondary" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Download</a>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
+            sortedVersions.forEach(version => {
+                html += `<div class="version-header">Patch ${version}</div>`;
+                grouped[version].forEach(build => {
+                    html += `<div class="card">
+                        <h3>${build.name}</h3>
+                        <div class="card-tag">${version}</div>
+                        <p>Click to view or download this build</p>
+                        <div class="card-buttons">
+                            <a href="${build.url}" target="_blank" class="btn btn-primary">View on GitHub</a>
+                            <a href="${build.downloadUrl}" download class="btn btn-secondary">Download</a>
+                        </div>
+                    </div>`;
+                });
+            });
+
+            container.innerHTML = html;
         }
 
-        function displayMoney(strategies) {
+        function displayMoney() {
             const container = document.getElementById('moneyContainer');
-            if (strategies.length === 0) {
-                container.innerHTML = '<div class="empty-state"><p>No strategies found.</p></div>';
-                return;
-            }
-            container.innerHTML = strategies.map(strat => `
-                <div class="card" style="grid-column: 1 / -1; margin-bottom: 20px;">
+            const strategies = [
+                { name: 'ABYSS SCARABS', file: 'abyss_scarabs.md' },
+                { name: 'KINGSMARCH', file: 'kingsmarch.md' }
+            ];
+
+            let html = '';
+            strategies.forEach(strat => {
+                html += `<div class="card">
                     <h3>${strat.name}</h3>
                     <p>Farming strategy with details, screenshots, and atlas tree information</p>
                     <div class="card-buttons">
-                        <a href="${strat.url}" target="_blank" class="btn btn-primary" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">View on GitHub</a>
+                        <a href="${GITHUB_WEB}/money_strats/${strat.file}" target="_blank" class="btn btn-primary">View on GitHub</a>
                     </div>
-                </div>
-            `).join('');
+                </div>`;
+            });
+            container.innerHTML = html;
         }
 
         function filterBuilds() {
@@ -443,18 +397,14 @@
             displayBuilds(filtered);
         }
 
-        function switchTab(tabName) {
-            // Hide all tabs
+        function switchTab(event, tabName) {
             document.querySelectorAll('.content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-
-            // Show selected tab
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
         }
 
-        // Load data on page load
-        fetchData();
+        window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
