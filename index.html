@@ -83,7 +83,7 @@
         }
 
         .content.active {
-            display: grid;
+            display: grid !important;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 20px;
         }
@@ -304,8 +304,6 @@
         </div>
 
         <footer>
-
-        <footer>
             Check out my other resources at <a href="https://quantumrepository.com" target="_blank">Quantum Repository</a>
         </footer>
     </div>
@@ -408,9 +406,9 @@
         function displayMeta() {
             const container = document.getElementById('metaContainer');
             const html = `
-                <div style="grid-column: 1 / -1;">
-                    <h2 style="color: var(--gold); margin-bottom: 20px; font-size: 1.8em;">3.27 Starter Hype & Stocking Guide</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.8;">Avoid crowded starters and pre-stock items those players will buy in the first 48–72h.</p>
+                <div style="grid-column: 1 / -1; color: var(--gold);">
+                    <h2 style="margin-bottom: 20px; font-size: 1.8em;">3.27 Starter Hype & Stocking Guide</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 30px; line-height: 1.8; font-size: 1.05em;">Avoid crowded starters and pre-stock items those players will buy in the first 48–72h.</p>
                 </div>
 
                 <div class="card" style="grid-column: 1 / -1;">
